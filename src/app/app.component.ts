@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RecipeApp';
+
+  recipeSelected: boolean = true;
+
+  onSelectView(selected: boolean){
+    console.log(selected);
+    this.recipeSelected = selected;
+    console.log("onSelectView: " + this.recipeSelected);
+  }
+
+
+
 }
