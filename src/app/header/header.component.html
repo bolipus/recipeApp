@@ -1,16 +1,16 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light">
-  <a class="navbar-brand" href="#">Recipe book</a>
+  <a class="navbar-brand">Recipe book</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" (click) = "selectRecipe(true)" href="#">Recipes</a>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink='/recipes' >Recipes</a>
       </li>
-      <li class="nav-item">
-       <a class="nav-link" (click) = "selectRecipe(false)" href="#">Shoping list</a>
+      <li class="nav-item" routerLinkActive="active">
+       <a class="nav-link"  routerLink='/shopping-list' >Shoping list</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -19,8 +19,8 @@
           Manage
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Save data</a>
-          <a class="dropdown-item" href="#">Fetch data</a>
+          <a class="dropdown-item" style="cursor: pointer;">Save data</a>
+          <a class="dropdown-item" style="cursor: pointer;">Fetch data</a>
         </div>
       </div>
     </ul>

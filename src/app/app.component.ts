@@ -1,21 +1,18 @@
 import { Component } from '@angular/core';
+import { ShoppingListService } from './services/shopping-list.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ShoppingListService]
 })
 export class AppComponent {
   title = 'RecipeApp';
 
-  recipeSelected: boolean = true;
-
-  onSelectView(selected: boolean){
-    console.log(selected);
-    this.recipeSelected = selected;
-    console.log("onSelectView: " + this.recipeSelected);
-  }
-
-
-
+  
 }
+
+
+
+

@@ -1,4 +1,4 @@
-<a href="#" class="list-group-item clearfix" (click) = "selectRecipe()">
+<a style="cursor: pointer;" class="list-group-item clearfix" (click) = "selectRecipe()" [routerLink]="['/recipes', recipe.id, 'details']">
   <div class="float-left">
     <h5 class="list-group-item-heading">
       {{recipe.name}}
