@@ -11,7 +11,7 @@ export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
 
   private recipes: Recipe[] = [
-    new Recipe(1,
+    new Recipe(
       'Schnizel',
       'Nice',
       'https://bit.ly/2RfZEqS',
@@ -20,7 +20,6 @@ export class RecipeService {
         new Ingridient('French fries', 20)
       ]),
     new Recipe(
-      2,
       'Burger',
       'Delicius',
       'https://bit.ly/2RfZEqS',
@@ -37,13 +36,8 @@ export class RecipeService {
     return this.recipes.slice();
   }
 
-  getRecipe(id: number): Recipe {
-    for (const recipe of this.recipes){
-      if (recipe.id === id){
-        return recipe;
-      }
-    }
-    return null;
+  getRecipe(index: number): Recipe {
+    return this.recipes[index];
   }
 
   addRecipe(recipe: Recipe) {
