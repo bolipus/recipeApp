@@ -5,10 +5,13 @@
     </button>
   </div>
 </div>
-<br>
-<div class="row" >
-  <div class="col-12" >    
-    <app-recipe-item *ngFor="let recipe of recipes; let i = index" [recipe] = "recipe" [id]="i"></app-recipe-item>    
+<br />
+<div class="row">
+  <div class="col-12">
+    <app-recipe-item
+      *ngFor="let recipe of recipes; let i = index"
+      [recipe]="recipe"
+      [id]="i"
+    ></app-recipe-item>
   </div>
 </div>
-
