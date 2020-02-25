@@ -14,16 +14,25 @@
         <a class="nav-link"  routerLink='/shopping-list' >Shoping list</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <div class="dropdown">
+      <ul class="nav navbar-nav float-right">
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+          <li class="nav-item"><a [routerLink]="['/signin']" class="nav-link">SignIn</a></li>
+          <li class="nav-item"><a [routerLink]="['/signup']" class="nav-link">Register</a></li>
+        </ng-template>
+
+        <ng-template [ngIf]="authService.isAuthenticated()">
+          <li class="nav-item"><a (click)="onLogout()" class="nav-link">Logout</a></li>
+        </ng-template>
+
+        <li class="dropdown" *ngIf="authService.isAuthenticated()">
           <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Manage
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save data</a>
-            <a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">Fetch data</a>
-          </div>
-        </div>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save data</a></li>
+            <li><a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">Fetch data</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

@@ -3,18 +3,20 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { RecipeService } from './recipe.service';
 import { Recipe } from '../recipes/recipe';
 import { map } from 'rxjs/operators';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataStorageService {
-  constructor(private http: HttpClient, private recipeService: RecipeService) {}
+  constructor(private http: HttpClient, private recipeService: RecipeService, private authService: AuthService) {}
 
   storeRecipes() {
     console.log('storeRecipe');
+    const token = this.authService.getToken();
     this.http
       .put<{ name: string }>(
-        'https://test-http-cefa0.firebaseio.com/recipes.json',
+        'https://test-http-cefa0.firebaseio.com/recipes.json?auth='+token,
         this.recipeService.getRecipes(),
         {
           observe: 'response'
@@ -31,8 +33,9 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
+    const token = this.authService.getToken();
     this.http
-      .get<Recipe[]>('https://test-http-cefa0.firebaseio.com/recipes.json', {
+      .get<Recipe[]>('https://test-http-cefa0.firebaseio.com/recipes.json?auth=' + token, {
         headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
         responseType: 'json'
       })
