@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { DataStorageService } from '../services/data-storage.service';
-import { AuthService } from '../auth/auth.service';
+import { DataStorageService } from '../../services/data-storage.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +22,10 @@ export class HeaderComponent implements OnInit {
   onFetchData(){
     console.log('FetchData');
     this.dataStorageService.fetchRecipes();
+  }
+
+  isAuthenticated(){
+    return this.authService.isAuthenticated();
   }
 
   onLogout() {
