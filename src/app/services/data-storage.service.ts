@@ -16,15 +16,13 @@ export class DataStorageService {
   ) {}
 
   storeRecipes() {
-    console.log('storeRecipe');
-    const token = this.authService.getToken();
+
     this.http
       .put<{ name: string }>(
         'https://test-http-cefa0.firebaseio.com/recipes.json',
         this.recipeService.getRecipes(),
         {
           observe: 'response',
-          params: new HttpParams().append('auth', token),
          reportProgress: true
         }
       )
@@ -39,14 +37,13 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    const token = this.authService.getToken();
     this.http
       .get<Recipe[]>(
         'https://test-http-cefa0.firebaseio.com/recipes.json',
         {
           headers: new HttpHeaders({ 'Custom-Header': 'Hello' }),
           responseType: 'json',
-          params: new HttpParams().append('auth', token),
+
           reportProgress: true
 
         }
