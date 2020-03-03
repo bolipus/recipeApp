@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../recipes/recipe';
-import { Ingridient } from '../shared/ingridient';
+import { Ingredient } from '../shared/ingredient';
 import { ShoppingListService } from './shopping-list.service';
 import { Subject } from 'rxjs';
 
@@ -17,17 +17,17 @@ export class RecipeService {
       'Nice',
       'https://bit.ly/2RfZEqS',
       [
-        new Ingridient('Meat', 1),
-        new Ingridient('French fries', 20)
+        new Ingredient('Meat', 1),
+        new Ingredient('French fries', 20)
       ]),
     new Recipe(
       'Burger',
       'Delicius',
       'https://bit.ly/2RfZEqS',
       [
-        new Ingridient('Bread', 2),
-        new Ingridient('Meat', 1),
-        new Ingridient('Cheese', 1)
+        new Ingredient('Bread', 2),
+        new Ingredient('Meat', 1),
+        new Ingredient('Cheese', 1)
       ])
   ];
 
@@ -61,8 +61,8 @@ export class RecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  addIngridientsToShoppingList(ingridients: Ingridient[]) {
-    this.shoppingListService.addIngridients(ingridients);
+  addIngridientsToShoppingList(ingredients: Ingredient[]) {
+    this.shoppingListService.addIngridients(ingredients);
     this.recipesChanged.next(this.recipes.slice());
   }
 
