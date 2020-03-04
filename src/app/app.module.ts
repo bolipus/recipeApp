@@ -8,7 +8,9 @@ import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
-import { shoopingListReducers } from './shopping-list/store/shopping-list-reducers';
+import { appReducers } from './store/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth/store/auth.effects';
 
 
 
@@ -24,7 +26,8 @@ import { shoopingListReducers } from './shopping-list/store/shopping-list-reduce
     AuthModule,
     SharedModule,
     CoreModule,
-    StoreModule.forRoot({shoppingList: shoopingListReducers})
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
