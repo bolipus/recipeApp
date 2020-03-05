@@ -1,6 +1,13 @@
-import { Ingredient } from '../../shared/ingredient';
-import { ShoppingListActions, ADD_INGREDIENT, ADD_INGREDIENTS, UPDATE_INGREDIENT, DELETE_INGREDIENT, START_EDIT, STOP_EDIT } from './shopping-list-actions';
-
+import { Ingredient } from "../../shared/ingredient";
+import {
+  ShoppingListActions,
+  ADD_INGREDIENT,
+  ADD_INGREDIENTS,
+  UPDATE_INGREDIENT,
+  DELETE_INGREDIENT,
+  START_EDIT,
+  STOP_EDIT
+} from "./shopping-list-actions";
 
 export interface ShoppingListState {
   ingredients: Ingredient[];
@@ -9,7 +16,7 @@ export interface ShoppingListState {
 }
 
 const initialState: ShoppingListState = {
-  ingredients: [new Ingredient('Apples', 5), new Ingredient('Tomatoes', 10)],
+  ingredients: [new Ingredient("Apples", 5), new Ingredient("Tomatoes", 10)],
   editedIngredient: null,
   editedIngredientIndex: -1
 };
@@ -25,7 +32,6 @@ export function shoppingListReducer(
         ingredients: [...state.ingredients, action.payload]
       };
     case ADD_INGREDIENTS:
-
       return {
         ...state,
         ingredients: [...state.ingredients, ...action.payload],
@@ -56,18 +62,18 @@ export function shoppingListReducer(
         editedIngredientIndex: -1
       };
     case START_EDIT:
-      const ingredientToEdit = {...state.ingredients[action.payload.index]}
-      return  {
+      const ingredientToEdit = { ...state.ingredients[action.payload.index] };
+      return {
         ...state,
         editedIngredient: ingredientToEdit,
         editedIngredientIndex: action.payload.index
-      }
-      case STOP_EDIT:
-        return  {
-          ...state,
-          editedIngredient: null,
-          editedIngredientIndex: -1
-        }
+      };
+    case STOP_EDIT:
+      return {
+        ...state,
+        editedIngredient: null,
+        editedIngredientIndex: -1
+      };
     default:
       return state;
   }
