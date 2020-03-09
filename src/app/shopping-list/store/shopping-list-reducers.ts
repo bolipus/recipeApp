@@ -1,4 +1,4 @@
-import { Ingredient } from "../../shared/ingredient";
+import { Ingredient } from '../../shared/ingredient';
 import {
   ShoppingListActions,
   ADD_INGREDIENT,
@@ -7,7 +7,7 @@ import {
   DELETE_INGREDIENT,
   START_EDIT,
   STOP_EDIT
-} from "./shopping-list-actions";
+} from './shopping-list-actions';
 
 export interface ShoppingListState {
   ingredients: Ingredient[];
@@ -16,7 +16,7 @@ export interface ShoppingListState {
 }
 
 const initialState: ShoppingListState = {
-  ingredients: [new Ingredient("Apples", 5), new Ingredient("Tomatoes", 10)],
+  ingredients: [new Ingredient('Apples', 5), new Ingredient('Tomatoes', 10)],
   editedIngredient: null,
   editedIngredientIndex: -1
 };
