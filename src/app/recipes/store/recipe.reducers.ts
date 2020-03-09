@@ -15,8 +15,8 @@ export interface RecipeFeatureState {
 
 export interface RecipeState {
   recipes: Recipe[];
-  editedRecipe: Ingredient;
-  editedRecipeIndex: number;
+  //editedRecipe: Ingredient;
+  //editedRecipeIndex: number;
 }
 
 const initialState: RecipeState = {
@@ -31,8 +31,8 @@ const initialState: RecipeState = {
       new Ingredient('Cheese', 1)
     ])
   ],
-  editedRecipe: null,
-  editedRecipeIndex: -1
+  //editedRecipe: null,
+  //editedRecipeIndex: -1
 };
 
 export function recipeReducer(
@@ -42,10 +42,12 @@ export function recipeReducer(
   switch (action.type) {
     case SET_RECIPES:
       return { ...state, recipes: [action.payload] };
+
     case ADD_RECIPE:
+      console.log('Recipe:' + action.payload);
       return {
         ...state,
-        recipes: [state.recipes, action.payload]
+        recipes: [...state.recipes, action.payload]
       };
     case ADD_RECIPES:
       return {
@@ -55,22 +57,22 @@ export function recipeReducer(
         editedRecipeIndex: -1
       };
     case UPDATE_RECIPE:
-      const recipe = state.recipes[state.editedRecipeIndex];
+      const recipe = state.recipes[action.payload.index];
       const updatedRecipe = {
         ...recipe,
-        ...action.payload.ingredients,
-        editedRecipe: null,
-        editedRecipeIndex: -1
+        ...action.payload.recipe,
+       // editedRecipe: null,
+       // editedRecipeIndex: -1
       };
       const recipes = [...state.recipes];
-      recipes[state.editedRecipeIndex] = updatedRecipe;
+      recipes[action.payload.index] = updatedRecipe;
       return {
         ...state,
         recipes: [...recipes]
       };
     case DELETE_RECIPE:
       const oldRecipes = [...state.recipes];
-      oldRecipes.splice(state.editedRecipeIndex);
+      oldRecipes.splice(action.payload.index, 1);
       return {
         ...state,
         recipes: [...oldRecipes],
