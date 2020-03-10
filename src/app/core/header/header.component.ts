@@ -4,9 +4,8 @@ import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store/app.reducers';
 import { LogOutAction } from '../../auth/store/auth.actions';
 import { AuthState } from '../../auth/store/auth.reducers';
-import { DataStorageService } from '../../services/data-storage.service';
 import { RecipeFeatureState } from '../../recipes/store/recipe.reducers';
-import { FetchRecipes } from '../../recipes/store/recipe.actions';
+import { FetchRecipes, StoreRecipes } from '../../recipes/store/recipe.actions';
 
 @Component({
   selector: 'app-header',
@@ -17,7 +16,6 @@ export class HeaderComponent implements OnInit {
   authState: Observable<AuthState>;
 
   constructor(
-    private dataStorageService: DataStorageService,
     private store: Store<AppState>,
     private recipeStore: Store<RecipeFeatureState>
   ) {}
@@ -27,7 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onSaveData() {
-    this.dataStorageService.storeRecipes();
+    this.recipeStore.dispatch(new StoreRecipes());
   }
 
   onFetchData() {
