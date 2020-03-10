@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
-import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../recipe';
 import { RecipeFeatureState, RecipeState } from '../store/recipe.reducers';
 import { Store } from '@ngrx/store';
@@ -88,10 +87,8 @@ export class RecipeEditComponent implements OnInit {
   onSubmit() {
     if (this.editMode) {
       this.recipeStore.dispatch(new UpdateRecipe({ index: this.id, recipe: this.recipeForm.value }));
-      // this.recipeService.updateRecipe(this.id, this.recipeForm.value);
     } else {
       this.recipeStore.dispatch(new AddRecipe(this.recipeForm.value));
-      //this.recipeService.addRecipe(this.recipeForm.value);
     }
     this.router.navigate(['../'], { relativeTo: this.route });
   }

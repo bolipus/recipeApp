@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthEffects {
+  constructor(private actions$: Actions, private router: Router) {}
+
   @Effect()
   authSignup = this.actions$.pipe(
     ofType(TRY_SIGNUP),
@@ -92,5 +94,5 @@ export class AuthEffects {
     )
   )
 
-  constructor(private actions$: Actions, private router: Router) {}
+
 }

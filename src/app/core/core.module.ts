@@ -3,11 +3,11 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
-import { RecipeService } from '../services/recipe.service';
 import { DataStorageService } from '../services/data-storage.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from '../shared/auth.interceptor';
 import { LoggingInterceptor } from '../shared/logging.interceptor';
+import { RecipeService } from '../services/recipe.service';
 
 @NgModule({
   declarations: [
@@ -25,8 +25,8 @@ import { LoggingInterceptor } from '../shared/logging.interceptor';
     HomeComponent
   ],
   providers: [
-    RecipeService,
     DataStorageService,
+    RecipeService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true}
   ],

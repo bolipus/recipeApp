@@ -41,7 +41,7 @@ export function recipeReducer(
 ) {
   switch (action.type) {
     case SET_RECIPES:
-      return { ...state, recipes: [action.payload] };
+      return { ...state, recipes: action.payload };
 
     case ADD_RECIPE:
       console.log('Recipe:' + action.payload);
@@ -64,11 +64,11 @@ export function recipeReducer(
        // editedRecipe: null,
        // editedRecipeIndex: -1
       };
-      const recipes = [...state.recipes];
-      recipes[action.payload.index] = updatedRecipe;
+      const newRecipes = [...state.recipes];
+      newRecipes[action.payload.index] = updatedRecipe;
       return {
         ...state,
-        recipes: [...recipes]
+        recipes: newRecipes
       };
     case DELETE_RECIPE:
       const oldRecipes = [...state.recipes];
